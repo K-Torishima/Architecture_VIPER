@@ -8,12 +8,19 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    let interactor: SearchRepositoryInteractor = SearchRepositoryInteractor()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        interactor.getSearchRepository(query: "torishima") { result in
+            switch result {
+            case .success(let response):
+                print(response)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
-
-
 }
 
