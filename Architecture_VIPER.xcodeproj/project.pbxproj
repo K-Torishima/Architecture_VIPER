@@ -56,6 +56,12 @@
 		7D93982D26CA774800925C0B /* Architecture_VIPER */ = {
 			isa = PBXGroup;
 			children = (
+				7D93984826CA788B00925C0B /* API */,
+				7D93984226CA781E00925C0B /* View */,
+				7D93984726CA788800925C0B /* Interactor */,
+				7D93984626CA788400925C0B /* Presenter */,
+				7D93984526CA788100925C0B /* Entity */,
+				7D93984426CA787E00925C0B /* Router */,
 				7D93982E26CA774800925C0B /* AppDelegate.swift */,
 				7D93983026CA774800925C0B /* SceneDelegate.swift */,
 				7D93983226CA774800925C0B /* ViewController.swift */,
@@ -65,6 +71,48 @@
 				7D93983C26CA774900925C0B /* Info.plist */,
 			);
 			path = Architecture_VIPER;
+			sourceTree = "<group>";
+		};
+		7D93984226CA781E00925C0B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7D93984426CA787E00925C0B /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		7D93984526CA788100925C0B /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		7D93984626CA788400925C0B /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		7D93984726CA788800925C0B /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		7D93984826CA788B00925C0B /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
