@@ -17,8 +17,8 @@ enum APIError: Error {
 
 extension APIError {
     struct Message: Decodable {
-        public let documentationURL: URL
-        public let message: String
+        let documentationURL: URL
+        let message: String
 
         enum CodingKeys: String, CodingKey {
             case documentationURL = "documentation_url"

@@ -7,13 +7,13 @@
 
 import Foundation
 
-public struct SearchRepositoriesRequest: RequestProtocol {    
+struct SearchRepositoriesRequest: RequestProtocol {
     typealias ResponseType = ItemsResponse<Repository>
 
-    public let method: HttpMethod = .get
-    public let path = "/search/repositories"
-
-    public var queryParameters: [String : String]? {
+    let method: HttpMethod = .get
+    let path = "/search/repositories"
+    
+    var queryParameters: [String : String]? {
         var params: [String: String] = ["q": query]
         if let page = page {
             params["page"] = "\(page)"
@@ -30,13 +30,13 @@ public struct SearchRepositoriesRequest: RequestProtocol {
         return params
     }
 
-    public let query: String
-    public let sort: Sort?
-    public let order: Order?
-    public let page: Int?
-    public let perPage: Int?
-
-    public init(query: String, sort: Sort?, order: Order?, page: Int?, perPage: Int?) {
+    let query: String
+    let sort: Sort?
+    let order: Order?
+    let page: Int?
+    let perPage: Int?
+    
+    init(query: String, sort: Sort?, order: Order?, page: Int?, perPage: Int?) {
         self.query = query
         self.sort = sort
         self.order = order
@@ -46,13 +46,13 @@ public struct SearchRepositoriesRequest: RequestProtocol {
 }
 
 extension SearchRepositoriesRequest {
-    public enum Sort: String {
+    enum Sort: String {
         case stars
         case forks
         case updated
     }
-
-    public enum Order: String {
+    
+    enum Order: String {
         case asc
         case desc
     }
