@@ -7,6 +7,16 @@
 
 import Foundation
 
+// ビジネスロジックを担当する
+// Presenterから依頼されたビジネスロジックを実施し、結果を返す
+// import UIKit 禁止
+// UIがどうなっているかはここでは関係ない
+// Interactor <- Presenter
+
+// UseCaseは別途UseCaseProtocolを実装し対応させる、最終的にはこちらに寄せていく
+
+// https://github.com/yimajo/VIPERBook1Samples/blob/master/Sample1A/Common/Protocol/UseCase.swift
+
 protocol SearchRepositoryUseCase {
     func getSearchRepository(query: String, conpletion: @escaping (Result<[Repository], Error>) -> ())
 }
