@@ -24,7 +24,10 @@ class SearchRepositoryRouter: SearchRepositoryWirefreme {
     
     // DI
     static func assembleModule() -> UIViewController {
-        let view = SearchRepositoryViewController()
+        // Storyboardを使う場合はStoryboardを生成する
+        // DIするならこの辺ちゃんと考えた方が良い
+        let storyboard = UIStoryboard(name: "SearchRepository", bundle: nil)
+        let view = storyboard.instantiateViewController(identifier: "searchRepository") as! SearchRepositoryViewController
         let router = SearchRepositoryRouter(viewcontroller: view)
         let interactor = SearchRepositoryInteractor()
 
