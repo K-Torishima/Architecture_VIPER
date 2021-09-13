@@ -6,13 +6,16 @@
 //
 
 import UIKit
+// Viewの生成時になんか変な動きをするので使えないかも
+// import SVProgressHUD
 
 // ViewControllerはUIのことしかしない
 // 基本的には、Presenterからの指示を受ける
 
 class SearchRepositoryViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var mainIndicator: UIActivityIndicatorView!
     
     var presenter: SearchRepositoryPresenterInput!
     
@@ -36,6 +39,17 @@ class SearchRepositoryViewController: UIViewController {
 }
 
 extension SearchRepositoryViewController : SearchRepositoryPresenterOutput {
+    func showProgressDidLoad() {
+        print("fetch start")
+        mainIndicator.startAnimating()
+        tableView.isHidden = true
+    }
+    
+    func hideProgressDidLoad() {
+        print("fetch end")
+        mainIndicator.stopAnimating()
+    }
+    
     func showData() {
         tableView.isHidden = presenter.numberOfRows > 0 ? false : true
         tableView.reloadData()

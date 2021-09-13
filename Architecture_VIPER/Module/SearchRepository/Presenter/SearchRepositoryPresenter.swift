@@ -37,6 +37,8 @@ protocol SearchRepositoryPresenterOutput: AnyObject {
  func showEmpty()
  func showError()
 */
+    func showProgressDidLoad()
+    func hideProgressDidLoad()
     func showData()
     
 }
@@ -92,6 +94,7 @@ extension SearchRepositoryPresenter: SearchRepositoryPresenterInput {
         // pageを指定してあげる
         // pre_pageは10とかで良いと思う
         // 次のpageが欲しかったらインクリメントする
+        view.showProgressDidLoad()
         interactor.getSearchRepository(query: "Swift") { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -104,6 +107,7 @@ extension SearchRepositoryPresenter: SearchRepositoryPresenterInput {
                 print(error)
             }
         }
+        view.hideProgressDidLoad()
     }
     // VCのviewWillAppearにセット
     func viewWillAppear() {
