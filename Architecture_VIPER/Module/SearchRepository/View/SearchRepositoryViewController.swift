@@ -12,11 +12,22 @@ import UIKit
 
 class SearchRepositoryViewController: UIViewController {
     
+    @IBOutlet weak var tableView: UITableView!
+    
     var presenter: SearchRepositoryPresenterInput!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
+        setupTableView()
+    }
+    
+    private func setupTableView() {
+        let headerView = UIView(frame: CGRect(x: .zero, y: .zero, width: view.frame.width, height: 16))
+        tableView.tableHeaderView = headerView
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.registerNib(cellClass: SearchRepositoryCell.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -25,5 +36,24 @@ class SearchRepositoryViewController: UIViewController {
 }
 
 extension SearchRepositoryViewController : SearchRepositoryPresenterOutput {
+    func showData() {
+        tableView.isHidden = presenter.numberOfRows > 0 ? false : true
+        tableView.reloadData()
+    }
+}
+
+extension SearchRepositoryViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter.numberOfRows
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(cellClass: SearchRepositoryCell.self, forIndexPath: indexPath)
+        cell.configre(entity: presenter.getRepository(forRow: indexPath.row))
+        return cell
+    }
 }

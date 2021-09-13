@@ -27,6 +27,10 @@
 		7D93986526CA97F300925C0B /* RepositoryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D93986426CA97F300925C0B /* RepositoryRequest.swift */; };
 		7D93986726CA98E400925C0B /* SearchRepositoriesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D93986626CA98E400925C0B /* SearchRepositoriesRequest.swift */; };
 		7D93986926CA994700925C0B /* ItemsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D93986826CA994700925C0B /* ItemsResponse.swift */; };
+		7DAB960E26EFA74B001D1E14 /* SearchRepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAB960C26EFA74B001D1E14 /* SearchRepositoryCell.swift */; };
+		7DAB960F26EFA74B001D1E14 /* SearchRepositoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DAB960D26EFA74B001D1E14 /* SearchRepositoryCell.xib */; };
+		7DAB961326EFB0FE001D1E14 /* UITableViewCell+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAB961226EFB0FE001D1E14 /* UITableViewCell+Ex.swift */; };
+		7DAB961726EFB401001D1E14 /* UITableView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAB961626EFB401001D1E14 /* UITableView+Ex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +56,10 @@
 		7D93986426CA97F300925C0B /* RepositoryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryRequest.swift; sourceTree = "<group>"; };
 		7D93986626CA98E400925C0B /* SearchRepositoriesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoriesRequest.swift; sourceTree = "<group>"; };
 		7D93986826CA994700925C0B /* ItemsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsResponse.swift; sourceTree = "<group>"; };
+		7DAB960C26EFA74B001D1E14 /* SearchRepositoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoryCell.swift; sourceTree = "<group>"; };
+		7DAB960D26EFA74B001D1E14 /* SearchRepositoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchRepositoryCell.xib; sourceTree = "<group>"; };
+		7DAB961226EFB0FE001D1E14 /* UITableViewCell+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Ex.swift"; sourceTree = "<group>"; };
+		7DAB961626EFB401001D1E14 /* UITableView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ex.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +118,7 @@
 		7D93982D26CA774800925C0B /* Architecture_VIPER */ = {
 			isa = PBXGroup;
 			children = (
+				7DAB961026EFB02C001D1E14 /* Util */,
 				7D44B60F26D8DE4900691B49 /* Application */,
 				7D93984826CA788B00925C0B /* API */,
 				7D93984F26CA909600925C0B /* Module */,
@@ -126,6 +135,8 @@
 			children = (
 				7D93985126CA914B00925C0B /* SearchRepositoryViewController.swift */,
 				7D93985326CA915B00925C0B /* SearchRepository.storyboard */,
+				7DAB960C26EFA74B001D1E14 /* SearchRepositoryCell.swift */,
+				7DAB960D26EFA74B001D1E14 /* SearchRepositoryCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -213,6 +224,23 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
+		7DAB961026EFB02C001D1E14 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				7DAB961126EFB0D2001D1E14 /* Extensions */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		7DAB961126EFB0D2001D1E14 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7DAB961226EFB0FE001D1E14 /* UITableViewCell+Ex.swift */,
+				7DAB961626EFB401001D1E14 /* UITableView+Ex.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -273,6 +301,7 @@
 				7D93985426CA915B00925C0B /* SearchRepository.storyboard in Resources */,
 				7D93983B26CA774900925C0B /* LaunchScreen.storyboard in Resources */,
 				7D93983826CA774900925C0B /* Assets.xcassets in Resources */,
+				7DAB960F26EFA74B001D1E14 /* SearchRepositoryCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,11 +324,14 @@
 				7D93985F26CA945200925C0B /* UserEntity.swift in Sources */,
 				7D93986526CA97F300925C0B /* RepositoryRequest.swift in Sources */,
 				7D93985A26CA919D00925C0B /* RepositoryEntity.swift in Sources */,
+				7DAB961726EFB401001D1E14 /* UITableView+Ex.swift in Sources */,
+				7DAB961326EFB0FE001D1E14 /* UITableViewCell+Ex.swift in Sources */,
 				7D93984C26CA7DFA00925C0B /* APIClient.swift in Sources */,
 				7D93984A26CA78F100925C0B /* RequestProtocol.swift in Sources */,
 				7D93984E26CA812800925C0B /* APIError.swift in Sources */,
 				7D93986726CA98E400925C0B /* SearchRepositoriesRequest.swift in Sources */,
 				7D93986926CA994700925C0B /* ItemsResponse.swift in Sources */,
+				7DAB960E26EFA74B001D1E14 /* SearchRepositoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

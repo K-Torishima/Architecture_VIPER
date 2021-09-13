@@ -16,8 +16,11 @@ import Foundation
 // Presenterで実装するもの
 protocol SearchRepositoryPresenterInput: AnyObject {
     var numberOfRows: Int { get }
+    // var hasNext: Bool { get set }
     func viewDidLoad()
     func viewWillAppear()
+    func getRepository(forRow row: Int) -> Repository
+    // func needMoreRead(_ row: Int) -> Bool
     func nabigateViewController()
 }
 
@@ -34,6 +37,7 @@ protocol SearchRepositoryPresenterOutput: AnyObject {
  func showEmpty()
  func showError()
 */
+    func showData()
     
 }
 
@@ -43,6 +47,7 @@ final class SearchRepositoryPresenter {
     private let router: SearchRepositoryWirefreme
     private let interactor: SearchRepositoryUseCase
     private(set) var datasource: [Repository] = []
+    var hasNext: Bool = false
     
     init(view: SearchRepositoryPresenterOutput,
          router: SearchRepositoryWirefreme,
@@ -56,7 +61,7 @@ final class SearchRepositoryPresenter {
 
 
 extension SearchRepositoryPresenter: SearchRepositoryPresenterInput {
-
+    
     var numberOfRows: Int {
         return datasource.count
         
@@ -67,6 +72,15 @@ extension SearchRepositoryPresenter: SearchRepositoryPresenterInput {
          */
     }
     
+    func getRepository(forRow row: Int) -> Repository {
+        return datasource[row]
+    }
+    
+    // GitHubの場合、Pageのカウントを渡す。
+    // HasNextはいらない
+    // func needMoreRead(_ row: Int) -> Bool {
+       //  return hasNext && row == datasource.count + 1
+    // }
     // VCのviewDidLoadにセット
     func viewDidLoad() {
         /*
@@ -75,12 +89,17 @@ extension SearchRepositoryPresenter: SearchRepositoryPresenterInput {
          VCは基本的はこれを起動するだけ、
         */
         
+        // pageを指定してあげる
+        // pre_pageは10とかで良いと思う
+        // 次のpageが欲しかったらインクリメントする
         interactor.getSearchRepository(query: "Swift") { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .success(let success):
-                print(success)
-                self.datasource.append(contentsOf: success)
+            case .success(let response):
+                self.datasource.append(contentsOf: response)
+                DispatchQueue.main.async {
+                    self.view.showData()
+                }
             case .failure(let error):
                 print(error)
             }
@@ -99,6 +118,4 @@ extension SearchRepositoryPresenter: SearchRepositoryPresenterInput {
     func nabigateViewController() {
         router.navigateViewController()
     }
-    
-    
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 
+// https://docs.github.com/ja/rest/reference/search
 struct Repository: Decodable {
     let id: Int
     let nodeID: String
