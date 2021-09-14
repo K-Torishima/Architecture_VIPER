@@ -6,6 +6,5 @@ target 'Architecture_VIPER' do
   use_frameworks!
 
   # Pods for Architecture_VIPER
-  pod 'SVProgressHUD'
 
 end

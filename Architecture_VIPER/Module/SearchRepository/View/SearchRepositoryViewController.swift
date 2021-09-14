@@ -6,8 +6,6 @@
 //
 
 import UIKit
-// Viewの生成時になんか変な動きをするので使えないかも
-// import SVProgressHUD
 
 // ViewControllerはUIのことしかしない
 // 基本的には、Presenterからの指示を受ける
