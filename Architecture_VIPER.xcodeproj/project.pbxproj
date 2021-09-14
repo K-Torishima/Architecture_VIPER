@@ -11,7 +11,6 @@
 		7D44B61326D8DE9C00691B49 /* AppPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D44B61226D8DE9C00691B49 /* AppPresenter.swift */; };
 		7D44B61526D8DEF900691B49 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D44B61426D8DEF900691B49 /* RootRouter.swift */; };
 		7D93982F26CA774800925C0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D93982E26CA774800925C0B /* AppDelegate.swift */; };
-		7D93983326CA774800925C0B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D93983226CA774800925C0B /* ViewController.swift */; };
 		7D93983826CA774900925C0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D93983726CA774900925C0B /* Assets.xcassets */; };
 		7D93983B26CA774900925C0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D93983926CA774900925C0B /* LaunchScreen.storyboard */; };
 		7D93984A26CA78F100925C0B /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D93984926CA78F100925C0B /* RequestProtocol.swift */; };
@@ -41,7 +40,6 @@
 		7D44B61426D8DEF900691B49 /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		7D93982B26CA774800925C0B /* Architecture_VIPER.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Architecture_VIPER.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D93982E26CA774800925C0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7D93983226CA774800925C0B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7D93983726CA774900925C0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D93983A26CA774900925C0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7D93983C26CA774900925C0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -129,7 +127,6 @@
 				7D44B60F26D8DE4900691B49 /* Application */,
 				7D93984826CA788B00925C0B /* API */,
 				7D93984F26CA909600925C0B /* Module */,
-				7D93983226CA774800925C0B /* ViewController.swift */,
 				7D93983726CA774900925C0B /* Assets.xcassets */,
 				7D93983926CA774900925C0B /* LaunchScreen.storyboard */,
 				7D93983C26CA774900925C0B /* Info.plist */,
@@ -385,7 +382,6 @@
 				7D93986226CA954000925C0B /* AccessToken.swift in Sources */,
 				7D93985626CA917800925C0B /* SearchRepositoryInteractor.swift in Sources */,
 				7D44B61526D8DEF900691B49 /* RootRouter.swift in Sources */,
-				7D93983326CA774800925C0B /* ViewController.swift in Sources */,
 				7D93985C26CA91B100925C0B /* SearchRepositoryRouter.swift in Sources */,
 				7D93982F26CA774800925C0B /* AppDelegate.swift in Sources */,
 				7D93985226CA914B00925C0B /* SearchRepositoryViewController.swift in Sources */,
