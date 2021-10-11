@@ -32,13 +32,13 @@
 ![スクリーンショット 2021-08-11 18 58 46](https://user-images.githubusercontent.com/52149750/129009886-1b9501ec-83ad-46bb-9aff-b5d035ac7d31.png)
 
 
-関連資料
-https://dev.classmethod.jp/articles/developers-io-2020-viper-architecture/
-https://dev.classmethod.jp/articles/developers-io-2020-viper-architecture-comment-res-2/
-https://www.yururiwork.net/archives/347
-https://github.com/yimajo/VIPERBook1Samples/blob/master/Sample1A/Common/Protocol/UseCase.swift
-https://qiita.com/hicka04/items/09534b5daffec33b2bec
-https://qiita.com/hirothings/items/8ce3ca69efca03bbef88
+### 関連資料
+- https://dev.classmethod.jp/articles/developers-io-2020-viper-architecture/
+- https://dev.classmethod.jp/articles/developers-io-2020-viper-architecture-comment-res-2/
+- https://www.yururiwork.net/archives/347
+- https://github.com/yimajo/VIPERBook1Samples/blob/master/Sample1A/Common/Protocol/UseCase.swift
+- https://qiita.com/hicka04/items/09534b5daffec33b2bec
+- https://qiita.com/hirothings/items/8ce3ca69efca03bbef88
 
 --------------------------------------------
 
