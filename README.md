@@ -201,7 +201,7 @@ extension FugaPresenter: HogePresenterDelegate {
 ```
 
 #### 流れ
-
+```
 HogeViewで何かしらのアクションがあった
 -> HogePresenter で　delegate.update（）を読んでいる
 -> HogeRouter でDIを定義
@@ -209,3 +209,4 @@ HogeViewで何かしらのアクションがあった
 -> FugaPresenter でdelegateをselfし、実装する（Viewに何かしらの渡すものがあればその時に渡す）
 -> FugaViewでイベントが発火される 
 
+```
