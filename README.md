@@ -55,11 +55,11 @@ protocol HogePresenterDelegate: AnyObject {
 }
 
 protocol HogePresenterInput: AnyObject {
- // Impl
+ // ...
 }
 
 protocol HogePresenterOutput: AnyObject {
- // Impl
+ // ...
 }
 
 final class HogePresenter {
