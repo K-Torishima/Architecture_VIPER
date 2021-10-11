@@ -54,6 +54,14 @@ protocol HogePresenterDelegate: AnyObject {
     func update()
 }
 
+protocol HogePresenterInput: AnyObject {
+ // Impl
+}
+
+protocol HogePresenterOutput: AnyObject {
+ // Impl
+}
+
 final class HogePresenter {
     private unowned var view: HogePresenterOutput
     private let router: HogeWirefreme
