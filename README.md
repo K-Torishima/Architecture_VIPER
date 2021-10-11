@@ -1,23 +1,30 @@
 # Architecture_VIPER
-## VIPERを勉強していくためのモチベーションに関して、
-シンプルかつ、責務がある程度切り分けられていて良い。
-またそれなりに変更に強いと思う
+## VIPERを勉強していくためのモチベーションに関して
 
+### これを実装してみたモチベーション
+- RxやCombineなどのReactive frameworkを使わないで、それなりに責務を分けてわかりやすい実装をしたいと思ったので実際にやってみた
 
-工数を考えるとちょっと多いがこれがある程度決まったレイヤーを実装していく場合これが良いのではないかと感じた。
+### やってみた感想
 
-Repository+MVVM＋Router　でもよさそう
+- シンプルかつ、責務がある程度切り分けられていて良い。
+- またそれなりに変更に強いと思う
+- 工数を考えるとちょっと多いがこれがある程度決まったレイヤーを実装していく場合これが良いのではないかと感じた。
+- Rxや、Combineを使うなら、VIPERではなく、CleanArchitecture + MVVM　＋　Router　でもよさそう
+- 参考　https://medium.com/@rockname/clean-archirecture-7be37f34c943
+
+### 実装想定
 
 例えば、エンジニアが３人いたとして、
 新規アプリ作る場合、シンプルにVIPERなら実装するレイヤーが切り分けられる、
 
-- APIクライアント実装、Model、Entity実装、　
-- UseCase、Interactor実装、　presenter実装 　
-- view,　(ViewController、他UIの実装）　、Routerの実装
+- APIクライアント実装, Model, Entity実装、　
+- UseCase, Interactor実装, presenter実装 　
+- view,　(ViewController、他UIの実装）, Routerの実装
 
 ３人いたらある程度のスピード感で実装ができそう
 
-## VIPERって何？
+## 本題（メモも含む）
+### VIPERって何？
 ちょーざっくり言うとクリーンアーキテクチャーのiOS版
 
 ![スクリーンショット 2021-08-11 18 58 16](https://user-images.githubusercontent.com/52149750/129009833-438b88d8-96f2-47ba-a15f-2a2cd166cbe4.png)
@@ -41,13 +48,13 @@ https://qiita.com/hirothings/items/8ce3ca69efca03bbef88
 - https://qiita.com/fr0g_fr0g/items/f6e67793c7fb0331528f
 - これ以外にもやり方はある
 
-## 遷移先の画面から遷移元にアクションを伝える場合
+### 遷移先の画面から遷移元にアクションを伝える場合
 
-### 動き
+#### 動き
 
 - APIを叩いてsuccessなら、遷移元のViewを更新したい
 
-### 遷移先　Presenter
+#### 遷移先　Presenter
 ``` swift 
 
 protocol HogePresenterDelegate: AnyObject {
@@ -83,7 +90,7 @@ final class HogePresenter {
 
 ```
 
-### delegate実装
+#### delegate実装
 
 ``` swift
 
@@ -103,7 +110,7 @@ func post() {
 
 ``` 
 
-### 遷移先　Router
+#### 遷移先　Router
 
 ``` swift
 
@@ -129,7 +136,7 @@ final class HogeRouter: HogeWirefreme {
 
 ```
 
-### 遷移元 Router
+#### 遷移元 Router
 
 ``` swift
 
@@ -158,7 +165,7 @@ class FugaRouter: FugaWirefreme {
 
 ```
 
-### 遷移元　Presenter 
+#### 遷移元　Presenter 
 
 ``` swift
 
@@ -173,7 +180,7 @@ class FugaPresenter {
 
 ```
 
-### delegate実装
+#### delegate実装
 
 ``` swift 
 
@@ -193,7 +200,7 @@ extension FugaPresenter: HogePresenterDelegate {
 
 ```
 
-### 流れ
+#### 流れ
 
 HogeViewで何かしらのアクションがあった
 -> HogePresenter で　delegate.update（）を読んでいる
