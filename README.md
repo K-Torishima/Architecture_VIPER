@@ -37,17 +37,15 @@ https://qiita.com/hirothings/items/8ce3ca69efca03bbef88
 
 ## View間の操作に関してのサンプル
 
-Presenterを土台とし、PresenterでDelegateをセットする
-参考記事はこれ、
-
-https://qiita.com/fr0g_fr0g/items/f6e67793c7fb0331528f
-これが結構スッキリ来るのではなか、
+- 参考記事
+- https://qiita.com/fr0g_fr0g/items/f6e67793c7fb0331528f
+- これ以外にもやり方はある
 
 ## 遷移先の画面から遷移元にアクションを伝える場合
 
 ### 動き
 
-- APIを叩いてサクセスなら、遷移元のViewを更新したい
+- APIを叩いてsuccessなら、遷移元のViewを更新したい
 
 ### 遷移先　Presenter
 ``` swift 
