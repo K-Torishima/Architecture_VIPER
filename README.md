@@ -8,18 +8,18 @@
 
 - シンプルかつ、責務がある程度切り分けられていて良い。
 - またそれなりに変更に強いと思う
-- 工数を考えるとちょっと多いがこれがある程度決まったレイヤーを実装していく場合これが良いのではないかと感じた。
+- 登場人物が多いので、ファイル数が多くなるが、大、中規模アプリを作る予定なら、VIPERならわかりやすくて良いのではないかと感じた。
 - Rxや、Combineを使うなら、VIPERではなく、CleanArchitecture + MVVM　＋　Router　でもよさそう
 - 参考　https://medium.com/@rockname/clean-archirecture-7be37f34c943
 
-### 実装想定
+### 実際に取り入れるなら
 
 例えば、エンジニアが３人いたとして、
 新規アプリ作る場合、シンプルにVIPERなら実装するレイヤーが切り分けられる、
 
-- APIクライアント実装, Model, Entity実装、　
-- UseCase, Interactor実装, presenter実装 　
-- view,　(ViewController、他UIの実装）, Routerの実装
+- APIクライアント実装, Entity実装
+- UseCase, Interactor実装, presenter実装　　(機能の振る舞いなど） 　
+- view,　(ViewController, View, Cell, その他UI）, Routerの実装　（画面遷移、DIコンテナ等）　　
 
 ３人いたらある程度のスピード感で実装ができそう
 
