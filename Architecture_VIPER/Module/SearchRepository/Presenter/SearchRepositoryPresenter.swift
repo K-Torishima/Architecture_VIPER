@@ -43,6 +43,7 @@ protocol SearchRepositoryPresenterOutput: AnyObject {
     
 }
 
+@MainActor
 final class SearchRepositoryPresenter {
     
     private unowned var view: SearchRepositoryPresenterOutput
@@ -85,16 +86,24 @@ extension SearchRepositoryPresenter: SearchRepositoryPresenterInput {
     // }
     // VCのviewDidLoadにセット
     func viewDidLoad() {
-        /*
-         画面を開いたときに発動したい時こちらを動かす
-         今回の場合は画面を開いたらFetchしたいとかならここに書く
-         VCは基本的はこれを起動するだけ、
-        */
-        
-        // pageを指定してあげる
-        // pre_pageは10とかで良いと思う
-        // 次のpageが欲しかったらインクリメントする
         view.showProgressDidLoad()
+        asyncFetchData()
+    }
+    // VCのviewWillAppearにセット
+    func viewWillAppear() {
+        /*
+         viewDidLoadと考え方は同じだが、
+         ページ切り替えで毎回動くのでここはライフサイクルをよく考えて実装する
+         */
+    }
+    
+    // ナビゲーションしたい場合こちらに、
+    // 複数同線があるならこれを増やす
+    func nabigateViewController() {
+        router.navigateViewController()
+    }
+    
+    private func fetchData() {
         interactor.getSearchRepository(query: "Swift") { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -109,17 +118,18 @@ extension SearchRepositoryPresenter: SearchRepositoryPresenterInput {
         }
         view.hideProgressDidLoad()
     }
-    // VCのviewWillAppearにセット
-    func viewWillAppear() {
-        /*
-         viewDidLoadと考え方は同じだが、
-         ページ切り替えで毎回動くのでここはライフサイクルをよく考えて実装する
-         */
-    }
     
-    // ナビゲーションしたい場合こちらに、
-    // 複数同線があるならこれを増やす
-    func nabigateViewController() {
-        router.navigateViewController()
+    /// concurrency対応
+    private func asyncFetchData() {
+        Task {
+            do {
+                defer { Task {@MainActor in view.hideProgressDidLoad }}
+                let response = try await interactor.getSearchRepository(query: "Go")
+                datasource.append(contentsOf: response)
+                view.showData()
+            } catch let error {
+                print(error)
+            }
+        }
     }
 }

@@ -23,7 +23,7 @@ class SearchRepositoryRouter: SearchRepositoryWirefreme {
     }
     
     // DI
-    static func assembleModule() -> UIViewController {
+    @MainActor static func assembleModule() -> UIViewController {
         // Storyboardを使う場合はStoryboardを生成する
         // DIするならこの辺ちゃんと考えた方が良い
         let storyboard = UIStoryboard(name: "SearchRepository", bundle: nil)

@@ -28,7 +28,7 @@ final class AppRouter {
 }
 
 extension AppRouter: AppWireframe {
-    func navigateViewController() {
+    @MainActor func navigateViewController() {
         // 最初の画面をDI
         let view = SearchRepositoryRouter.assembleModule()
         let navigationController = UINavigationController(rootViewController: view)
