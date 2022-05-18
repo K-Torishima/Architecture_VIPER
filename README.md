@@ -214,11 +214,9 @@ HogeViewで何かしらのアクションがあった
 
 --- 
 
-２０２２/5/18
+## Concurrency対応した 2022/5/18
 
-Concurrency対応した
-
-interactor　<- Presenter
+### interactor　<- Presenter
 
 APIクライアントをConcurrency対応
 肝は`withCheckedThrowingContinuation`
@@ -231,7 +229,8 @@ continuationには `resume(returning:)` もある、これは`success`
 
 
 
-```
+``` swift
+
 func request<T: RequestProtocol>(_ request: T) async throws -> T.ResponseType {
         return try await withCheckedThrowingContinuation { continuation in
             let url = request.baseURL.appendingPathComponent(request.path)
@@ -271,10 +270,11 @@ func request<T: RequestProtocol>(_ request: T) async throws -> T.ResponseType {
 }
 ```
 
-UseCaseはかなりシンプルになる
+
+### UseCaseはかなりシンプルになる
 
 
-``` 
+``` swift 
 
 protocol SearchRepositoryUseCase {
     /// collback
@@ -311,12 +311,25 @@ class SearchRepositoryInteractor: SearchRepositoryUseCase {
 
 ``` 
 
-Presenter
+### Presenter
 呼ぶ側はもっとシンプル
 [weak self]からの解放
 
+@MainActorは必須
 
-``` 
+``` swift
+
+@MainActor
+final class SearchRepositoryPresenter {
+
+
+func viewDidLoad() {
+    view.showProgressDidLoad()
+    asyncFetchData()
+}
+
+....
+
     private func asyncFetchData() {
         Task {
             do {
@@ -329,6 +342,7 @@ Presenter
             }
         }
     }
+}
 
 
 ```
