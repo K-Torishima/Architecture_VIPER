@@ -19,13 +19,14 @@ import Foundation
 
 protocol SearchRepositoryUseCase {
     func getSearchRepository(query: String, conpletion: @escaping (Result<[Repository], Error>) -> ())
+    func getSearchRepository(query: String) async throws -> [Repository]
 }
 
 class SearchRepositoryInteractor: SearchRepositoryUseCase {
+    let session = APIClient()
+    
     func getSearchRepository(query: String, conpletion: @escaping (Result<[Repository], Error>) -> ()) {
-        let session = APIClient()
         let request = SearchRepositoriesRequest(query: query, sort: nil, order: nil, page: nil, perPage: nil)
-        
         session.request(request) { result in
             switch result {
             case.success(let response):
@@ -34,5 +35,11 @@ class SearchRepositoryInteractor: SearchRepositoryUseCase {
                 conpletion(.failure(error))
             }
         }
+    }
+    
+    func getSearchRepository(query: String) async throws -> [Repository] {
+        let request = SearchRepositoriesRequest(query: query, sort: nil, order: nil, page: nil, perPage: nil)
+        let response = try await session.request(request)
+        return response.items
     }
 }
