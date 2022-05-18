@@ -210,3 +210,125 @@ HogeViewで何かしらのアクションがあった
 -> FugaViewでイベントが発火される 
 
 ```
+
+
+--- 
+
+２０２２/5/18
+
+Concurrency対応した
+
+interactor　<- Presenter
+
+APIクライアントをConcurrency対応
+肝は`withCheckedThrowingContinuation`
+Result型でError型を返さなくなったのでErrorをどうするのかとかアレだったが
+continuation.resume(throwing:)で対応
+
+continuationには `resume(returning:)` もある、これは`success`
+`resume(throwing:)` 　は`failure`
+
+
+
+
+```
+func request<T: RequestProtocol>(_ request: T) async throws -> T.ResponseType {
+        return try await withCheckedThrowingContinuation { continuation in
+            let url = request.baseURL.appendingPathComponent(request.path)
+            guard var components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+                continuation.resume(throwing: APIError.failedToCreateComponents(url))
+                return
+            }
+            
+            ...... 
+        
+            let task = session.dataTask(with: urlRequest) { data, response, error in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                    return
+                }
+                guard let response = response as? HTTPURLResponse else {
+                    continuation.resume(throwing: APIError.noResponse)
+                    return
+                }
+                guard let data = data else {
+                    continuation.resume(throwing: APIError.noData(response))
+                    return
+                }
+                
+                ....... 
+               
+                do {
+                    let object = try JSONDecoder().decode(T.ResponseType.self, from: data)
+                    continuation.resume(returning: object)
+                } catch {
+                    continuation.resume(throwing: error)
+                }
+            }
+            task.resume()
+        }
+    }
+}
+```
+
+UseCaseはかなりシンプルになる
+
+
+``` 
+
+protocol SearchRepositoryUseCase {
+    /// collback
+    func getSearchRepository(query: String, conpletion: @escaping (Result<[Repository], Error>) -> ())
+    /// async
+    func getSearchRepository(query: String) async throws -> [Repository]
+}
+
+class SearchRepositoryInteractor: SearchRepositoryUseCase {
+    let session = APIClient()
+    
+    /// collback
+    func getSearchRepository(query: String, conpletion: @escaping (Result<[Repository], Error>) -> ()) {
+        let request = SearchRepositoriesRequest(query: query, sort: nil, order: nil, page: nil, perPage: nil)
+        session.request(request) { result in
+            switch result {
+            case.success(let response):
+                conpletion(.success(response.items))
+            case .failure(let error):
+                conpletion(.failure(error))
+            }
+        }
+    }
+    
+    /// async 
+    func getSearchRepository(query: String) async throws -> [Repository] {
+        let request = SearchRepositoriesRequest(query: query, sort: nil, order: nil, page: nil, perPage: nil)
+        let response = try await session.request(request)
+        return response.items
+    }
+}
+
+
+
+``` 
+
+Presenter
+呼ぶ側はもっとシンプル
+[weak self]からの解放
+
+
+``` 
+    private func asyncFetchData() {
+        Task {
+            do {
+                defer { Task {@MainActor in view.hideProgressDidLoad }}
+                let response = try await interactor.getSearchRepository(query: "Go")
+                datasource.append(contentsOf: response)
+                view.showData()
+            } catch let error {
+                print(error)
+            }
+        }
+    }
+
+
+```
